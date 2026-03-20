@@ -16,8 +16,24 @@ export default function ReviewSubmit({ data }: any) {
     setStatus('submitting');
     
     try {
-      // Add champion to payload
-      const payload = { ...data, champion: championId };
+      // Map the flattened data fields to the expected nested schema structure
+      const payload = {
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        finalsMVP: data.finalsMVP,
+        finalScore: data.finalScore,
+        playInSelections: {
+          westSunsVsClippersWinner: data.westSunsVsClippersWinner,
+          westWarriorsVsBlazersWinner: data.westWarriorsVsBlazersWinner,
+          westEighthSeedWinner: data.westEighthSeedWinner,
+          eastHeatVsHawksWinner: data.eastHeatVsHawksWinner,
+          east76ersVsHornetsWinner: data.east76ersVsHornetsWinner,
+          eastEighthSeedWinner: data.eastEighthSeedWinner,
+        },
+        bracketSelections: data.bracketSelections,
+        champion: championId,
+      };
       
       // Save to MongoDB via API
       const res = await fetch('/api/predictions', {
@@ -28,8 +44,8 @@ export default function ReviewSubmit({ data }: any) {
       
       if (!res.ok) throw new Error('Database save failed');
 
-      // Send EmailJS
-      await sendPredictionEmail(payload);
+      // Send EmailJS using the original flat data structure
+      await sendPredictionEmail({ ...data, champion: championId });
 
       setStatus('success');
     } catch (err) {
