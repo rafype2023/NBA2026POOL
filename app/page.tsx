@@ -6,6 +6,7 @@ import PlayInStage from '@/components/PlayInStage';
 import PlayoffsBracket from '@/components/PlayoffsBracket';
 import ReviewSubmit from '@/components/ReviewSubmit';
 import { CheckCircle2 } from 'lucide-react';
+import Link from 'next/link';
 
 const steps = [
   { id: 1, name: 'Info' },
@@ -48,6 +49,12 @@ export default function Home() {
               </span>
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-center mt-12 mb-4">
+          <Link href="/standings" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-neutral-900 border border-orange-500/30 text-orange-400 hover:bg-orange-500 hover:text-black hover:border-orange-500 transition-all font-black text-sm md:text-base uppercase tracking-widest shadow-[0_0_20px_rgba(249,115,22,0.15)] hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] hover:-translate-y-1">
+            View Official Standings
+          </Link>
         </div>
       </div>
 

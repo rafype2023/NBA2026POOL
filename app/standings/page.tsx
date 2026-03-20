@@ -1,0 +1,122 @@
+"use client";
+
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { Trophy, ArrowLeft, Loader2 } from 'lucide-react';
+import { teams } from '@/lib/teams';
+import Image from 'next/image';
+
+export default function StandingsPage() {
+    const [standings, setStandings] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch('/api/standings')
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    setStandings(data.standings);
+                }
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error(err);
+                setLoading(false);
+            });
+    }, []);
+
+    return (
+        <main className="min-h-screen bg-black text-white font-sans overflow-x-hidden p-4 md:p-8">
+            <div className="max-w-7xl mx-auto">
+                <Link href="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-orange-500 mb-8 transition-colors">
+                   <ArrowLeft className="w-5 h-5" />
+                   Back to Predictor
+                </Link>
+
+                <div className="text-center mb-12 flex flex-col items-center">
+                   <Trophy className="w-20 h-20 text-orange-500 mx-auto mb-4 drop-shadow-[0_0_20px_rgba(249,115,22,0.5)]" />
+                   <h1 className="text-4xl md:text-6xl font-black bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-transparent bg-clip-text tracking-tighter uppercase mb-2">
+                       Official Standings
+                   </h1>
+                   <p className="text-neutral-400 max-w-xl mx-auto text-sm md:text-base">
+                       Live scores dynamically calculated against the Master predictions bracket.
+                   </p>
+                </div>
+
+                {loading ? (
+                    <div className="flex flex-col items-center justify-center py-20 gap-4">
+                        <Loader2 className="w-12 h-12 text-orange-500 animate-spin" />
+                        <span className="text-orange-500 font-bold uppercase tracking-widest text-sm">Crunching Numbers...</span>
+                    </div>
+                ) : (
+                    <div className="bg-neutral-900 border border-neutral-800 rounded-2xl shadow-[0_0_30px_rgba(249,115,22,0.1)] overflow-hidden">
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left border-collapse min-w-[900px]">
+                                <thead>
+                                    <tr className="bg-neutral-950 text-neutral-400 text-xs md:text-sm uppercase tracking-wider border-b border-neutral-800">
+                                        <th className="p-4 md:p-6 font-bold text-center w-24">Rank</th>
+                                        <th className="p-4 md:p-6 font-bold">Player</th>
+                                        <th className="p-4 md:p-6 font-bold max-w-[150px]">Predicted Champ</th>
+                                        <th className="p-4 md:p-6 font-bold text-center">Play-In</th>
+                                        <th className="p-4 md:p-6 font-bold text-center">R1</th>
+                                        <th className="p-4 md:p-6 font-bold text-center">Semis</th>
+                                        <th className="p-4 md:p-6 font-bold text-center">Conf Finals</th>
+                                        <th className="p-4 md:p-6 font-bold text-center">Finals</th>
+                                        <th className="p-4 md:p-6 font-black text-orange-400 text-right text-lg">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-neutral-800/50">
+                                    {standings.map((s) => (
+                                        <tr key={s.id} className="hover:bg-neutral-800/40 transition-colors group">
+                                            <td className="p-4 md:p-6 text-center">
+                                                <span className={`inline-flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full font-black text-sm md:text-base
+                                                    ${s.rank === 1 ? 'bg-gradient-to-br from-yellow-300 to-yellow-600 text-black shadow-[0_0_20px_rgba(234,179,8,0.5)] scale-110' : 
+                                                      s.rank === 2 ? 'bg-gradient-to-br from-neutral-200 to-neutral-400 text-black shadow-[0_0_15px_rgba(163,163,163,0.3)]' : 
+                                                      s.rank === 3 ? 'bg-gradient-to-br from-amber-600 to-amber-800 text-white shadow-[0_0_15px_rgba(180,83,9,0.3)]' : 
+                                                      'bg-neutral-800 text-neutral-400 font-bold'}`}>
+                                                    {s.rank}
+                                                </span>
+                                            </td>
+                                            <td className="p-4 md:p-6 font-bold text-white text-base md:text-lg">{s.name}</td>
+                                            <td className="p-4 md:p-6">
+                                                {teams[s.champion] ? (
+                                                    <div className="flex items-center gap-3">
+                                                        {teams[s.champion].logo ? (
+                                                            <div className="w-8 h-8 relative rounded-full overflow-hidden bg-neutral-800 border border-neutral-700">
+                                                                <Image src={teams[s.champion].logo} alt={teams[s.champion].name} fill className="object-cover p-1" unoptimized/>
+                                                            </div>
+                                                        ) : (
+                                                            <div className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700" />
+                                                        )}
+                                                        <span className="text-sm text-neutral-300 font-medium">{teams[s.champion].name}</span>
+                                                    </div>
+                                                ) : <span className="text-neutral-600 text-xs uppercase font-bold tracking-widest">Undecided</span>}
+                                            </td>
+                                            <td className="p-4 md:p-6 text-center text-neutral-400 font-medium">{s.scorePlayin} pts</td>
+                                            <td className="p-4 md:p-6 text-center text-neutral-400 font-medium">{s.scoreR1} pts</td>
+                                            <td className="p-4 md:p-6 text-center text-neutral-400 font-medium">{s.scoreSemis} pts</td>
+                                            <td className="p-4 md:p-6 text-center text-neutral-400 font-medium">{s.scoreCf} pts</td>
+                                            <td className="p-4 md:p-6 text-center text-neutral-400 font-medium">{s.scoreFinals} pts</td>
+                                            <td className="p-4 md:p-6 text-right">
+                                                <div className="text-2xl md:text-3xl font-black text-white group-hover:text-orange-400 tracking-tighter transition-colors">
+                                                    {s.totalPoints.toFixed(1)}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    {standings.length === 0 && (
+                                        <tr>
+                                            <td colSpan={9} className="p-12 text-center text-neutral-500 text-lg">
+                                                No participants found, or the <span className="text-orange-500 font-bold">Clave-Clave</span> master record is missing!
+                                            </td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </main>
+    );
+}
