@@ -5,10 +5,12 @@ import Link from 'next/link';
 import { Trophy, ArrowLeft, Loader2 } from 'lucide-react';
 import { teams } from '@/lib/teams';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function StandingsPage() {
     const [standings, setStandings] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isImageOpen, setIsImageOpen] = useState(false);
 
     useEffect(() => {
         fetch('/api/standings')
@@ -38,9 +40,19 @@ export default function StandingsPage() {
                    <h1 className="text-4xl md:text-6xl font-black bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-transparent bg-clip-text tracking-tighter uppercase mb-2">
                        Official Standings
                    </h1>
-                   <p className="text-neutral-400 max-w-xl mx-auto text-sm md:text-base">
+                   <p className="text-neutral-400 max-w-xl mx-auto text-sm md:text-base mb-8">
                        Live scores dynamically calculated against the Master predictions bracket.
                    </p>
+
+                   <button 
+                       onClick={() => setIsImageOpen(true)} 
+                       className="relative w-64 h-36 md:w-80 md:h-[180px] rounded-xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-500 transition-all shadow-[0_0_15px_rgba(249,115,22,0.1)] hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] group cursor-zoom-in mt-2"
+                   >
+                       <Image src="/assets/NBASCORES.jpg" alt="NBA Scores Format" fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
+                       <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                           <span className="text-white font-bold uppercase tracking-widest text-sm bg-black/80 px-4 py-2 rounded-full border border-white/10">View Image Fullscreen</span>
+                       </div>
+                   </button>
                 </div>
 
                 {loading ? (
@@ -117,6 +129,40 @@ export default function StandingsPage() {
                     </div>
                 )}
             </div>
+
+            <AnimatePresence>
+                {isImageOpen && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setIsImageOpen(false)}
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/90 backdrop-blur-sm cursor-zoom-out"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            onClick={(e) => e.stopPropagation()}
+                            className="relative w-full max-w-5xl max-h-[90vh] rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(249,115,22,0.3)] bg-neutral-900 border border-neutral-800 flex flex-col cursor-default"
+                        >
+                            <div className="flex justify-between items-center p-4 border-b border-neutral-800 bg-black/50">
+                                <h3 className="font-bold text-white uppercase tracking-widest text-sm">NBA Scores Reference</h3>
+                                <button 
+                                    onClick={() => setIsImageOpen(false)}
+                                    className="w-8 h-8 flex items-center justify-center rounded-full bg-neutral-800 text-neutral-400 hover:text-white hover:bg-orange-500 transition-colors"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+                            <div className="relative w-full flex-1 overflow-auto bg-black p-2 flex justify-center items-center min-h-[50vh]">
+                                <img src="/assets/NBASCORES.jpg" alt="NBA Scores Details" className="max-w-full max-h-[80vh] object-contain rounded-lg" />
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </main>
     );
 }
