@@ -38,4 +38,4 @@ const PredictionSchema: Schema = new Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-export default mongoose.models.Prediction || mongoose.model<IPrediction>('Prediction', PredictionSchema);
+export default mongoose.models.Prediction || mongoose.model<IPrediction>('Prediction', PredictionSchema, '2026predictions');
