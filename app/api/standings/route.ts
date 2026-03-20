@@ -50,7 +50,7 @@ export async function GET() {
         if (mTeams.includes(uTeams[1]) && uTeams[1] && uTeams[0] !== uTeams[1]) correctTeams++;
 
         const hasWinner = (uWinner === mWinner) && !!mWinner;
-        const hasGames = (Number(uGames) === Number(mGames)) && !!mGames;
+        const hasGames = (String(uGames).trim() === String(mGames).trim()) && !!mGames;
 
         if (!hasWinner) return 0; // 0 points if winner is completely wrong
 
