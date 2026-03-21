@@ -19,7 +19,7 @@ export const teams: Record<string, { name: string; logo: string; gif?: string }>
   mia: { name: 'Heat', logo: '/assets/heat.png', gif: '/assets/heat.gif' },
   atl: { name: 'Hawks', logo: '/assets/hawks.png' },
   phi: { name: '76ers', logo: '/assets/76ers.png', gif: '/assets/76ers.gif' }, 
-  cha: { name: 'Hornets', logo: '' }, 
+  cha: { name: 'Hornets', logo: '/assets/hornets.png' }, 
 };
 
 // Based on the screenshot
