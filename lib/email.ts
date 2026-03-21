@@ -16,32 +16,32 @@ export const sendPredictionEmail = async (data: any) => {
   };
 
   const bracket_summary = `
-WEST - FIRST ROUND:
+OESTE - PRIMERA RONDA:
 1v8: ${getS('west_r1_s1')}
 4v5: ${getS('west_r1_s2')}
 3v6: ${getS('west_r1_s3')}
 2v7: ${getS('west_r1_s4')}
 
-WEST - SEMIFINALS:
-Series 1: ${getS('west_r2_s1')}
-Series 2: ${getS('west_r2_s2')}
+OESTE - SEMIFINALES:
+Serie 1: ${getS('west_r2_s1')}
+Serie 2: ${getS('west_r2_s2')}
 
-EAST - FIRST ROUND:
+ESTE - PRIMERA RONDA:
 1v8: ${getS('east_r1_s1')}
 4v5: ${getS('east_r1_s2')}
 3v6: ${getS('east_r1_s3')}
 2v7: ${getS('east_r1_s4')}
 
-EAST - SEMIFINALS:
-Series 1: ${getS('east_r2_s1')}
-Series 2: ${getS('east_r2_s2')}
+ESTE - SEMIFINALES:
+Serie 1: ${getS('east_r2_s1')}
+Serie 2: ${getS('east_r2_s2')}
 
-CONFERENCE FINALS:
-WEST: ${getS('west_cf')}
-EAST: ${getS('east_cf')}
+FINALES DE CONFERENCIA:
+OESTE: ${getS('west_cf')}
+ESTE: ${getS('east_cf')}
 
-NBA FINALS:
-Winner: ${getS('finals')}
+FINALES DE LA NBA:
+Ganador: ${getS('finals')}
 `.trim();
 
   // Format the email variables

@@ -11,8 +11,8 @@ import Link from 'next/link';
 const steps = [
   { id: 1, name: 'Info' },
   { id: 2, name: 'Play-In' },
-  { id: 3, name: 'Bracket' },
-  { id: 4, name: 'Review' },
+  { id: 3, name: 'Cuadro' },
+  { id: 4, name: 'Revisión' },
 ];
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
       {/* Header */}
       <div className="max-w-6xl mx-auto mb-10 text-center">
         <h1 className="text-4xl md:text-6xl font-black bg-gradient-to-r from-blue-500 via-orange-500 to-red-500 text-transparent bg-clip-text mb-4 tracking-tighter">
-          2026 PLAYOFFS PREDICTOR
+          PREDICTOR DE PLAYOFFS 2026
         </h1>
         
         {/* Progress Tracker */}
@@ -53,7 +53,7 @@ export default function Home() {
 
         <div className="flex justify-center mt-12 mb-4">
           <Link href="/standings" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-neutral-900 border border-orange-500/30 text-orange-400 hover:bg-orange-500 hover:text-black hover:border-orange-500 transition-all font-black text-sm md:text-base uppercase tracking-widest shadow-[0_0_20px_rgba(249,115,22,0.15)] hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] hover:-translate-y-1">
-            View Official Standings
+            Ver Posiciones Oficiales
           </Link>
         </div>
       </div>

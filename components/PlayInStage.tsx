@@ -64,20 +64,20 @@ export default function PlayInStage({ data, updateData, onNext }: any) {
       animate={{ opacity: 1, scale: 1 }}
       className="p-6 max-w-4xl mx-auto"
     >
-      <h2 className="text-3xl font-extrabold text-white text-center mb-8 tracking-wide">Play-In Tournament</h2>
+      <h2 className="text-3xl font-extrabold text-white text-center mb-8 tracking-wide">Torneo Play-In</h2>
       
       <div className="grid md:grid-cols-2 gap-8">
         {/* West Play-in */}
         <div className="space-y-4">
-          <h2 className="text-xl font-bold text-blue-400 border-b border-blue-900 pb-2">Western Conference</h2>
+          <h2 className="text-xl font-bold text-blue-400 border-b border-blue-900 pb-2">Conferencia Oeste</h2>
           <MatchupCard 
-            title="Game 1 (Winner gets 7th Seed)" 
+            title="Juego 1 (Ganador obtiene el 7mo Sembrado)" 
             teamA={west.playin.game1[0]} teamB={west.playin.game1[1]} 
             selectedWinner={data.westSunsVsClippersWinner} 
             onSelect={handleWestG1} 
           />
           <MatchupCard 
-            title="Game 2 (Loser goes home)" 
+            title="Juego 2 (Perdedor es eliminado)" 
             teamA={west.playin.game2[0]} teamB={west.playin.game2[1]} 
             selectedWinner={data.westWarriorsVsBlazersWinner} 
             onSelect={handleWestG2} 
@@ -87,7 +87,7 @@ export default function PlayInStage({ data, updateData, onNext }: any) {
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
                 <div className="mt-4">
                   <MatchupCard 
-                    title="Game 3 (Winner gets 8th Seed)" 
+                    title="Juego 3 (Ganador obtiene el 8vo Sembrado)" 
                     teamA={westLoserG1} teamB={data.westWarriorsVsBlazersWinner} 
                     selectedWinner={data.westEighthSeedWinner} 
                     onSelect={(w: string) => updateData({ westEighthSeedWinner: w })} 
@@ -100,15 +100,15 @@ export default function PlayInStage({ data, updateData, onNext }: any) {
 
         {/* East Play-in */}
         <div className="space-y-4">
-          <h2 className="text-xl font-bold text-red-400 border-b border-red-900 pb-2">Eastern Conference</h2>
+          <h2 className="text-xl font-bold text-red-400 border-b border-red-900 pb-2">Conferencia Este</h2>
           <MatchupCard 
-            title="Game 1 (Winner gets 7th Seed)" 
+            title="Juego 1 (Ganador obtiene el 7mo Sembrado)" 
             teamA={east.playin.game1[0]} teamB={east.playin.game1[1]} 
             selectedWinner={data.eastHeatVsHawksWinner} 
             onSelect={handleEastG1} 
           />
           <MatchupCard 
-            title="Game 2 (Loser goes home)" 
+            title="Juego 2 (Perdedor es eliminado)" 
             teamA={east.playin.game2[0]} teamB={east.playin.game2[1]} 
             selectedWinner={data.east76ersVsHornetsWinner} 
             onSelect={handleEastG2} 
@@ -118,7 +118,7 @@ export default function PlayInStage({ data, updateData, onNext }: any) {
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
                 <div className="mt-4">
                   <MatchupCard 
-                    title="Game 3 (Winner gets 8th Seed)" 
+                    title="Juego 3 (Ganador obtiene el 8vo Sembrado)" 
                     teamA={eastLoserG1} teamB={data.east76ersVsHornetsWinner} 
                     selectedWinner={data.eastEighthSeedWinner} 
                     onSelect={(w: string) => updateData({ eastEighthSeedWinner: w })} 
@@ -136,7 +136,7 @@ export default function PlayInStage({ data, updateData, onNext }: any) {
           disabled={!isComplete} 
           className="px-12 py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-black shadow-[0_0_20px_rgba(249,115,22,0.4)] disabled:opacity-50 disabled:shadow-none transition-all"
         >
-          {isComplete ? "Continue to Playoffs" : "Select all winners"}
+          {isComplete ? "Continuar a los Playoffs" : "Selecciona todos los ganadores"}
         </button>
       </div>
     </motion.div>

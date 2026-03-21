@@ -32,16 +32,16 @@ export default function StandingsPage() {
             <div className="max-w-7xl mx-auto">
                 <Link href="/" className="inline-flex items-center gap-2 text-neutral-400 hover:text-orange-500 mb-8 transition-colors">
                    <ArrowLeft className="w-5 h-5" />
-                   Back to Predictor
+                   Volver al Predictor
                 </Link>
 
                 <div className="text-center mb-12 flex flex-col items-center">
                    <Trophy className="w-20 h-20 text-orange-500 mx-auto mb-4 drop-shadow-[0_0_20px_rgba(249,115,22,0.5)]" />
                    <h1 className="text-4xl md:text-6xl font-black bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-transparent bg-clip-text tracking-tighter uppercase mb-2">
-                       Official Standings
+                       Posiciones Oficiales
                    </h1>
                    <p className="text-neutral-400 max-w-xl mx-auto text-sm md:text-base mb-8">
-                       Live scores dynamically calculated against the Master predictions bracket.
+                       Puntajes en vivo calculados dinámicamente contra el cuadro maestro.
                    </p>
 
                    <button 
@@ -50,7 +50,7 @@ export default function StandingsPage() {
                    >
                        <Image src="/assets/NBASCORES.jpg" alt="NBA Scores Format" fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
                        <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                           <span className="text-white font-bold uppercase tracking-widest text-sm bg-black/80 px-4 py-2 rounded-full border border-white/10">View Image Fullscreen</span>
+                           <span className="text-white font-bold uppercase tracking-widest text-sm bg-black/80 px-4 py-2 rounded-full border border-white/10">Ver Imagen en Pantalla Completa</span>
                        </div>
                    </button>
                 </div>
@@ -58,7 +58,7 @@ export default function StandingsPage() {
                 {loading ? (
                     <div className="flex flex-col items-center justify-center py-20 gap-4">
                         <Loader2 className="w-12 h-12 text-orange-500 animate-spin" />
-                        <span className="text-orange-500 font-bold uppercase tracking-widest text-sm">Crunching Numbers...</span>
+                        <span className="text-orange-500 font-bold uppercase tracking-widest text-sm">Calculando Números...</span>
                     </div>
                 ) : (
                     <div className="bg-neutral-900 border border-neutral-800 rounded-2xl shadow-[0_0_30px_rgba(249,115,22,0.1)] overflow-hidden">
@@ -66,14 +66,14 @@ export default function StandingsPage() {
                             <table className="w-full text-left border-collapse min-w-[900px]">
                                 <thead>
                                     <tr className="bg-neutral-950 text-neutral-400 text-xs md:text-sm uppercase tracking-wider border-b border-neutral-800">
-                                        <th className="p-4 md:p-6 font-bold text-center w-24">Rank</th>
-                                        <th className="p-4 md:p-6 font-bold">Player</th>
-                                        <th className="p-4 md:p-6 font-bold max-w-[150px]">Predicted Champ</th>
+                                        <th className="p-4 md:p-6 font-bold text-center w-24">Posición</th>
+                                        <th className="p-4 md:p-6 font-bold">Jugador</th>
+                                        <th className="p-4 md:p-6 font-bold max-w-[150px]">Campeón Predicho</th>
                                         <th className="p-4 md:p-6 font-bold text-center">Play-In</th>
                                         <th className="p-4 md:p-6 font-bold text-center">R1</th>
                                         <th className="p-4 md:p-6 font-bold text-center">Semis</th>
-                                        <th className="p-4 md:p-6 font-bold text-center">Conf Finals</th>
-                                        <th className="p-4 md:p-6 font-bold text-center">Finals</th>
+                                        <th className="p-4 md:p-6 font-bold text-center">Finales Conf</th>
+                                        <th className="p-4 md:p-6 font-bold text-center">Finales</th>
                                         <th className="p-4 md:p-6 font-black text-orange-400 text-right text-lg">Total</th>
                                     </tr>
                                 </thead>
@@ -102,7 +102,7 @@ export default function StandingsPage() {
                                                         )}
                                                         <span className="text-sm text-neutral-300 font-medium">{teams[s.champion].name}</span>
                                                     </div>
-                                                ) : <span className="text-neutral-600 text-xs uppercase font-bold tracking-widest">Undecided</span>}
+                                                ) : <span className="text-neutral-600 text-xs uppercase font-bold tracking-widest">Indeciso</span>}
                                             </td>
                                             <td className="p-4 md:p-6 text-center text-neutral-400 font-medium">{s.scorePlayin} pts</td>
                                             <td className="p-4 md:p-6 text-center text-neutral-400 font-medium">{s.scoreR1} pts</td>
@@ -119,7 +119,7 @@ export default function StandingsPage() {
                                     {standings.length === 0 && (
                                         <tr>
                                             <td colSpan={9} className="p-12 text-center text-neutral-500 text-lg">
-                                                No participants found, or the <span className="text-orange-500 font-bold">Clave-Clave</span> master record is missing!
+                                                No se encontraron participantes, ¡o falta el registro maestro <span className="text-orange-500 font-bold">Clave-Clave</span>!
                                             </td>
                                         </tr>
                                     )}
@@ -148,7 +148,7 @@ export default function StandingsPage() {
                             className="relative w-full max-w-5xl max-h-[90vh] rounded-2xl overflow-hidden shadow-[0_0_50px_rgba(249,115,22,0.3)] bg-neutral-900 border border-neutral-800 flex flex-col cursor-default"
                         >
                             <div className="flex justify-between items-center p-4 border-b border-neutral-800 bg-black/50">
-                                <h3 className="font-bold text-white uppercase tracking-widest text-sm">NBA Scores Reference</h3>
+                                <h3 className="font-bold text-white uppercase tracking-widest text-sm">Referencia de Puntajes NBA</h3>
                                 <button 
                                     onClick={() => setIsImageOpen(false)}
                                     className="w-8 h-8 flex items-center justify-center rounded-full bg-neutral-800 text-neutral-400 hover:text-white hover:bg-orange-500 transition-colors"
