@@ -28,12 +28,12 @@ export const initialSeeds = {
     1: 'okc',
     2: 'sas',
     3: 'lal',
-    4: 'hou',
-    5: 'den',
-    6: 'min',
+    4: 'den',
+    5: 'min',
+    6: 'hou',
     playin: {
       game1: ['phx', 'lac'], // 7 vs 8 (winner gets 7 seed, loser goes to game 3)
-      game2: ['gsw', 'por'], // 9 vs 10 (winner goes to game 3, loser out)
+      game2: ['por', 'gsw'], // 9 vs 10 (winner goes to game 3, loser out)
     }
   },
   east: {
@@ -41,11 +41,11 @@ export const initialSeeds = {
     2: 'bos',
     3: 'nyk',
     4: 'cle',
-    5: 'orl',
-    6: 'tor',
+    5: 'tor',
+    6: 'atl',
     playin: {
-      game1: ['mia', 'atl'], // 7 vs 8
-      game2: ['phi', 'cha'], // 9 vs 10
+      game1: ['phi', 'mia'], // 7 vs 8
+      game2: ['cha', 'orl'], // 9 vs 10
     }
   }
 };

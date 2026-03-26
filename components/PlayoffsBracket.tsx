@@ -70,7 +70,7 @@ export default function PlayoffsBracket({ data, updateData, onNext }: any) {
     s1: { a: initialSeeds.east[1], b: data.eastEighthSeedWinner },
     s2: { a: initialSeeds.east[4], b: initialSeeds.east[5] },
     s3: { a: initialSeeds.east[3], b: initialSeeds.east[6] },
-    s4: { a: initialSeeds.east[2], b: data.eastHeatVsHawksWinner }
+    s4: { a: initialSeeds.east[2], b: data.east76ersVsHeatWinner }
   };
 
   // Round 2

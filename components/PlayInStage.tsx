@@ -46,17 +46,17 @@ export default function PlayInStage({ data, updateData, onNext }: any) {
   
   // Handlers for East
   const handleEastG1 = (winner: string) => {
-    updateData({ eastHeatVsHawksWinner: winner, eastEighthSeedWinner: null });
+    updateData({ east76ersVsHeatWinner: winner, eastEighthSeedWinner: null });
   };
   const handleEastG2 = (winner: string) => {
-    updateData({ east76ersVsHornetsWinner: winner, eastEighthSeedWinner: null });
+    updateData({ eastHornetsVsMagicWinner: winner, eastEighthSeedWinner: null });
   };
 
   const westLoserG1 = data.westSunsVsClippersWinner ? (data.westSunsVsClippersWinner === west.playin.game1[0] ? west.playin.game1[1] : west.playin.game1[0]) : null;
-  const eastLoserG1 = data.eastHeatVsHawksWinner ? (data.eastHeatVsHawksWinner === east.playin.game1[0] ? east.playin.game1[1] : east.playin.game1[0]) : null;
+  const eastLoserG1 = data.east76ersVsHeatWinner ? (data.east76ersVsHeatWinner === east.playin.game1[0] ? east.playin.game1[1] : east.playin.game1[0]) : null;
 
   const isComplete = data.westSunsVsClippersWinner && data.westWarriorsVsBlazersWinner && data.westEighthSeedWinner &&
-                     data.eastHeatVsHawksWinner && data.east76ersVsHornetsWinner && data.eastEighthSeedWinner;
+                     data.east76ersVsHeatWinner && data.eastHornetsVsMagicWinner && data.eastEighthSeedWinner;
 
   return (
     <motion.div 
@@ -104,22 +104,22 @@ export default function PlayInStage({ data, updateData, onNext }: any) {
           <MatchupCard 
             title="Juego 1 (Ganador obtiene el 7mo Sembrado)" 
             teamA={east.playin.game1[0]} teamB={east.playin.game1[1]} 
-            selectedWinner={data.eastHeatVsHawksWinner} 
+            selectedWinner={data.east76ersVsHeatWinner} 
             onSelect={handleEastG1} 
           />
           <MatchupCard 
             title="Juego 2 (Perdedor es eliminado)" 
             teamA={east.playin.game2[0]} teamB={east.playin.game2[1]} 
-            selectedWinner={data.east76ersVsHornetsWinner} 
+            selectedWinner={data.eastHornetsVsMagicWinner} 
             onSelect={handleEastG2} 
           />
           <AnimatePresence>
-            {eastLoserG1 && data.east76ersVsHornetsWinner && (
+            {eastLoserG1 && data.eastHornetsVsMagicWinner && (
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}>
                 <div className="mt-4">
                   <MatchupCard 
                     title="Juego 3 (Ganador obtiene el 8vo Sembrado)" 
-                    teamA={eastLoserG1} teamB={data.east76ersVsHornetsWinner} 
+                    teamA={eastLoserG1} teamB={data.eastHornetsVsMagicWinner} 
                     selectedWinner={data.eastEighthSeedWinner} 
                     onSelect={(w: string) => updateData({ eastEighthSeedWinner: w })} 
                   />

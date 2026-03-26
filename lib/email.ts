@@ -53,7 +53,7 @@ Ganador: ${getS('finals')}
     final_score: data.finalScore,
     playin_west_7: teams[data.westSunsVsClippersWinner]?.name,
     playin_west_8: teams[data.westEighthSeedWinner]?.name,
-    playin_east_7: teams[data.eastHeatVsHawksWinner]?.name,
+    playin_east_7: teams[data.east76ersVsHeatWinner]?.name,
     playin_east_8: teams[data.eastEighthSeedWinner]?.name,
     bracket_summary: bracket_summary
   };

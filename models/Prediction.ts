@@ -10,8 +10,8 @@ export interface IPrediction extends Document {
     westSunsVsClippersWinner: string;
     westWarriorsVsBlazersWinner: string;
     westEighthSeedWinner: string;
-    eastHeatVsHawksWinner: string;
-    east76ersVsHornetsWinner: string;
+    east76ersVsHeatWinner: string;
+    eastHornetsVsMagicWinner: string;
     eastEighthSeedWinner: string;
   };
   bracketSelections: any; 
@@ -29,8 +29,8 @@ const PredictionSchema: Schema = new Schema({
     westSunsVsClippersWinner: { type: String, required: true },
     westWarriorsVsBlazersWinner: { type: String, required: true },
     westEighthSeedWinner: { type: String, required: true },
-    eastHeatVsHawksWinner: { type: String, required: true },
-    east76ersVsHornetsWinner: { type: String, required: true },
+    east76ersVsHeatWinner: { type: String, required: true },
+    eastHornetsVsMagicWinner: { type: String, required: true },
     eastEighthSeedWinner: { type: String, required: true },
   },
   bracketSelections: { type: Schema.Types.Mixed, required: true },

@@ -31,7 +31,7 @@ export async function GET() {
             case 'east_r1_s1': return ['det', playin?.eastEighthSeedWinner];
             case 'east_r1_s2': return ['cle', 'orl'];
             case 'east_r1_s3': return ['nyk', 'tor'];
-            case 'east_r1_s4': return ['bos', playin?.eastHeatVsHawksWinner];
+            case 'east_r1_s4': return ['bos', playin?.east76ersVsHeatWinner];
 
             case 'east_r2_s1': return [bracket?.east_r1_s1?.winner, bracket?.east_r1_s2?.winner];
             case 'east_r2_s2': return [bracket?.east_r1_s3?.winner, bracket?.east_r1_s4?.winner];
@@ -82,7 +82,7 @@ export async function GET() {
 
         // Play-In Scoring (1 pt per correct winner)
         ['westSunsVsClippersWinner', 'westWarriorsVsBlazersWinner', 'westEighthSeedWinner', 
-         'eastHeatVsHawksWinner', 'east76ersVsHornetsWinner', 'eastEighthSeedWinner'].forEach(k => {
+         'east76ersVsHeatWinner', 'eastHornetsVsMagicWinner', 'eastEighthSeedWinner'].forEach(k => {
              if (p.playInSelections?.[k] === master.playInSelections?.[k] && master.playInSelections?.[k]) {
                  scorePlayin += 1;
              }
