@@ -51,9 +51,12 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="flex justify-center mt-12 mb-4">
-          <Link href="/standings" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-neutral-900 border border-orange-500/30 text-orange-400 hover:bg-orange-500 hover:text-black hover:border-orange-500 transition-all font-black text-sm md:text-base uppercase tracking-widest shadow-[0_0_20px_rgba(249,115,22,0.15)] hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] hover:-translate-y-1">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-12 mb-4">
+          <Link href="/standings" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-neutral-900 border border-orange-500/30 text-orange-400 hover:bg-orange-500 hover:text-black hover:border-orange-500 transition-all font-black text-sm md:text-base uppercase tracking-widest shadow-[0_0_20px_rgba(249,115,22,0.15)] hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] hover:-translate-y-1 w-full sm:w-auto text-center">
             Ver Posiciones Oficiales
+          </Link>
+          <Link href="/tips" className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-neutral-900 border border-blue-500/30 text-blue-400 hover:bg-blue-500 hover:text-black hover:border-blue-500 transition-all font-black text-sm md:text-base uppercase tracking-widest shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:-translate-y-1 w-full sm:w-auto text-center">
+            Ver Videos y Consejos
           </Link>
         </div>
       </div>
