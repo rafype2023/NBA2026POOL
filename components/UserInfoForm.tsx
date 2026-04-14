@@ -45,13 +45,15 @@ export default function UserInfoForm({ data, updateData, onNext }: any) {
       </div>
 
       <div className="mt-8">
-        <button 
-          onClick={onNext}
-          disabled={!isComplete} 
-          className="w-full py-4 rounded-xl font-bold text-lg bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-black shadow-[0_0_20px_rgba(249,115,22,0.4)] disabled:opacity-50 disabled:shadow-none transition-all"
-        >
-          {isComplete ? "Comenzar Predicción" : "Completa todos los campos"}
-        </button>
+        <div className="text-center">
+          <button 
+            disabled={true} 
+            className="w-full py-4 rounded-xl font-bold text-lg bg-neutral-600 text-neutral-400 cursor-not-allowed shadow-none"
+          >
+            Completa todos los campos
+          </button>
+          <p className="text-red-500 font-bold text-xl mt-4 uppercase tracking-widest animate-pulse">YA empezaron los Juegos</p>
+        </div>
       </div>
     </motion.div>
   );
