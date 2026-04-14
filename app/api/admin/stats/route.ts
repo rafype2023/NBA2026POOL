@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     }
 
     await dbConnect();
-    const predictions = await Prediction.find({});
+    const predictions = await Prediction.find({ name: { $ne: 'Clave-Clave' } });
 
     const stats: any = {
       champions: {},

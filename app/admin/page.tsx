@@ -83,6 +83,62 @@ export default function AdminPage() {
       ));
   };
 
+  const renderChampions3D = (obj: Record<string, number>) => {
+    const entries = Object.entries(obj || {}).sort((a, b) => b[1] - a[1]);
+    if (entries.length === 0) return null;
+    const maxCount = entries[0][1];
+
+    return (
+      <div className="flex flex-col gap-5 mt-4">
+        {entries.map(([id, count], index) => {
+          const widthPercent = Math.max((count / maxCount) * 100, 5);
+          const team = teams[id];
+          
+          return (
+             <div key={id} className="relative w-full h-12 flex items-center gap-2">
+               {team && team.logo ? (
+                 <div className="w-10 h-10 flex-shrink-0 bg-white rounded-full p-1 shadow-[0_0_15px_rgba(249,115,22,0.4)] z-10 relative">
+                   <img src={team.logo} alt={team.name} className="w-full h-full object-contain drop-shadow-md" />
+                 </div>
+               ) : (
+                 <div className="w-10 h-10 flex-shrink-0 bg-neutral-800 rounded-full border border-neutral-600 flex items-center justify-center text-xs font-bold text-white z-10">
+                   {id}
+                 </div>
+               )}
+               
+               <div className="relative flex-1 h-10 bg-neutral-900 rounded-r-xl border border-neutral-800 shadow-[inset_0_4px_6px_rgba(0,0,0,0.8)] ring-1 ring-white/5 overflow-hidden">
+                  {/* The 3D Bar */}
+                  <motion.div 
+                    initial={{ width: 0 }}
+                    animate={{ width: `${widthPercent}%` }}
+                    transition={{ duration: 1.2, delay: index * 0.1, ease: 'easeOut' }}
+                    className="absolute top-0 left-0 h-full flex items-center justify-end pr-3 rounded-r-xl"
+                    style={{
+                      background: 'linear-gradient(180deg, #fca5a5 0%, #ef4444 30%, #b91c1c 80%, #7f1d1d 100%)',
+                      boxShadow: 'inset 0 4px 6px rgba(255,255,255,0.4), inset 0 -4px 6px rgba(0,0,0,0.5), 5px 0 15px rgba(239,68,68,0.5)',
+                      borderRight: '1px solid #fca5a5',
+                      borderTop: '1px solid #fecaca'
+                    }}
+                  >
+                     <span className="font-black text-white text-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] relative z-20">
+                       {count}
+                     </span>
+                  </motion.div>
+                  
+                  {/* Label overlaid */}
+                  <div className="absolute top-0 left-4 h-full flex items-center pointer-events-none z-10 mix-blend-screen text-white">
+                    <span className="font-extrabold uppercase tracking-wider text-sm drop-shadow-[0_2px_2px_rgba(0,0,0,1)] text-white/90">
+                      {getTeamName(id)}
+                    </span>
+                  </div>
+               </div>
+             </div>
+          );
+        })}
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-black text-white p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
@@ -95,13 +151,11 @@ export default function AdminPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Champions */}
-          <div className="bg-neutral-900 border border-neutral-800 p-6 rounded-2xl shadow-lg">
-            <h2 className="text-xl font-black text-white mb-4 flex items-center gap-2">
-              🏆 Campeones Elegidos
+          <div className="bg-neutral-900 border border-neutral-800 p-6 rounded-2xl shadow-lg md:col-span-2 lg:col-span-3">
+            <h2 className="text-2xl font-black text-white mb-6 border-b border-neutral-800 pb-2">
+              🏆 Distribución de Campeones (3D)
             </h2>
-            <div className="space-y-1">
-              {renderSortedObj(stats.champions, getTeamName)}
-            </div>
+            {renderChampions3D(stats.champions)}
           </div>
 
           {/* MVPs */}
