@@ -80,12 +80,15 @@ export default function ReviewSubmit({ data }: any) {
       </div>
 
       {status === 'idle' && (
-        <button 
-          onClick={handleSubmit}
-          className="w-full py-5 rounded-xl font-black text-xl bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-black shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all hover:scale-105"
-        >
-          CONFIRMAR Y ENVIAR
-        </button>
+        <div className="text-center mt-6">
+          <button 
+            disabled
+            className="w-full py-5 rounded-xl font-black text-xl bg-neutral-600 text-neutral-400 cursor-not-allowed shadow-none"
+          >
+            CONFIRMAR Y ENVIAR
+          </button>
+          <p className="text-red-500 font-bold text-2xl mt-4 uppercase tracking-widest animate-pulse">YA empezaron los Juegos</p>
+        </div>
       )}
 
       {status === 'submitting' && (
