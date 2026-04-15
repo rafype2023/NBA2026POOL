@@ -107,20 +107,24 @@ export default function AdminReportPage() {
             {/* Header section */}
             <div className="border-b-4 border-black pb-4 mb-6">
               <h1 className="text-4xl font-black uppercase tracking-tight text-center">{p.name}</h1>
-              <p className="text-center text-neutral-500 mt-1">{p.email} • {p.phone}</p>
             </div>
 
             {/* High level Data */}
             <div className="grid grid-cols-3 gap-4 mb-8">
-               <div className="bg-neutral-100 p-4 rounded-lg text-center border border-neutral-200">
-                  <div className="text-xs uppercase font-bold text-neutral-500 mb-1">Campeón NBA</div>
-                  <div className="text-xl font-black text-blue-700">{getTeamName(p.champion)}</div>
+               <div className="bg-neutral-100 p-4 rounded-lg text-center border border-neutral-200 flex flex-col items-center justify-center">
+                  <div className="text-xs uppercase font-bold text-neutral-500 mb-2">Campeón NBA</div>
+                  <div className="flex items-center gap-2">
+                    {teams[p.champion]?.logo && (
+                      <img src={teams[p.champion].logo} alt={getTeamName(p.champion)} className="w-8 h-8 object-contain drop-shadow-sm" />
+                    )}
+                    <span className="text-xl font-black text-blue-700 leading-none">{getTeamName(p.champion)}</span>
+                  </div>
                </div>
-               <div className="bg-neutral-100 p-4 rounded-lg text-center border border-neutral-200">
+               <div className="bg-neutral-100 p-4 rounded-lg text-center border border-neutral-200 flex flex-col items-center justify-center">
                   <div className="text-xs uppercase font-bold text-neutral-500 mb-1">MVP Finales</div>
                   <div className="text-lg font-black">{p.finalsMVP}</div>
                </div>
-               <div className="bg-neutral-100 p-4 rounded-lg text-center border border-neutral-200">
+               <div className="bg-neutral-100 p-4 rounded-lg text-center border border-neutral-200 flex flex-col items-center justify-center">
                   <div className="text-xs uppercase font-bold text-neutral-500 mb-1">Marcador Final</div>
                   <div className="text-lg font-black">{p.finalScore}</div>
                </div>
