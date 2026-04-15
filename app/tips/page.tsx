@@ -31,7 +31,7 @@ export default function TipsPage() {
         >
           <div className="aspect-video bg-black relative">
             <video 
-              src={v.src} 
+              src={`${v.src}#t=0.1`} 
               className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity pointer-events-none"
               preload="metadata"
               muted
