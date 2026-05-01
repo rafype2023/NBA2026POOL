@@ -11,6 +11,7 @@ export default function StandingsPage() {
     const [standings, setStandings] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [isImageOpen, setIsImageOpen] = useState(false);
+    const [activeImage, setActiveImage] = useState('/assets/NBASCORES.jpg');
 
     useEffect(() => {
         fetch('/api/standings')
@@ -44,15 +45,27 @@ export default function StandingsPage() {
                        Puntajes en vivo calculados dinámicamente contra el cuadro maestro.
                    </p>
 
-                   <button 
-                       onClick={() => setIsImageOpen(true)} 
-                       className="relative w-64 h-36 md:w-80 md:h-[180px] rounded-xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-500 transition-all shadow-[0_0_15px_rgba(249,115,22,0.1)] hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] group cursor-zoom-in mt-2"
-                   >
-                       <Image src="/assets/NBASCORES.jpg" alt="NBA Scores Format" fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
-                       <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                           <span className="text-white font-bold uppercase tracking-widest text-sm bg-black/80 px-4 py-2 rounded-full border border-white/10">Ver Imagen en Pantalla Completa</span>
-                       </div>
-                   </button>
+                   <div className="flex flex-col md:flex-row gap-4 mt-2 justify-center">
+                       <button 
+                           onClick={() => { setActiveImage('/assets/NBASCORES.jpg'); setIsImageOpen(true); }} 
+                           className="relative w-64 h-36 md:w-80 md:h-[180px] rounded-xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-500 transition-all shadow-[0_0_15px_rgba(249,115,22,0.1)] hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] group cursor-zoom-in"
+                       >
+                           <Image src="/assets/NBASCORES.jpg" alt="NBA Scores Format" fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
+                           <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                               <span className="text-white font-bold uppercase tracking-widest text-sm bg-black/80 px-4 py-2 rounded-full border border-white/10">Ver Puntajes</span>
+                           </div>
+                       </button>
+
+                       <button 
+                           onClick={() => { setActiveImage('/assets/playoffs.jpg'); setIsImageOpen(true); }} 
+                           className="relative w-64 h-36 md:w-80 md:h-[180px] rounded-xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-500 transition-all shadow-[0_0_15px_rgba(249,115,22,0.1)] hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] group cursor-zoom-in"
+                       >
+                           <Image src="/assets/playoffs.jpg" alt="Playoffs Bracket" fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
+                           <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                               <span className="text-white font-bold uppercase tracking-widest text-sm bg-black/80 px-4 py-2 rounded-full border border-white/10">Ver Playoffs</span>
+                           </div>
+                       </button>
+                   </div>
                 </div>
 
                 {loading ? (
@@ -157,7 +170,7 @@ export default function StandingsPage() {
                                 </button>
                             </div>
                             <div className="relative w-full flex-1 overflow-auto bg-black p-2 flex justify-center items-center min-h-[50vh]">
-                                <img src="/assets/NBASCORES.jpg" alt="NBA Scores Details" className="max-w-full max-h-[80vh] object-contain rounded-lg" />
+                                <img src={activeImage} alt="Referencia" className="max-w-full max-h-[80vh] object-contain rounded-lg" />
                             </div>
                         </motion.div>
                     </motion.div>
