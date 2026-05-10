@@ -45,7 +45,7 @@ export default function StandingsPage() {
                        Puntajes en vivo calculados dinámicamente contra el cuadro maestro.
                    </p>
 
-                   <div className="flex flex-col md:flex-row gap-4 mt-2 justify-center">
+                   <div className="flex flex-col md:flex-row flex-wrap gap-4 mt-2 justify-center">
                        <button 
                            onClick={() => { setActiveImage('/assets/NBASCORES.jpg'); setIsImageOpen(true); }} 
                            className="relative w-64 h-36 md:w-80 md:h-[180px] rounded-xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-500 transition-all shadow-[0_0_15px_rgba(249,115,22,0.1)] hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] group cursor-zoom-in"
@@ -57,16 +57,26 @@ export default function StandingsPage() {
                        </button>
 
                        <button 
-                           onClick={() => { setActiveImage('/assets/playoffs.png'); setIsImageOpen(true); }} 
+                           onClick={() => { setActiveImage('/assets/playoffs_picture.png'); setIsImageOpen(true); }} 
                            className="relative w-64 h-36 md:w-80 md:h-[180px] rounded-xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-500 transition-all shadow-[0_0_15px_rgba(249,115,22,0.1)] hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] group cursor-zoom-in"
                        >
-                           <Image src="/assets/playoffs.png" alt="Playoffs Bracket" fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
+                           <Image src="/assets/playoffs_picture.png" alt="Playoffs Bracket" fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
                            <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                <span className="text-white font-bold uppercase tracking-widest text-sm bg-black/80 px-4 py-2 rounded-full border border-white/10">Ver Playoffs</span>
                            </div>
                        </button>
+
+                       <button 
+                           onClick={() => { setActiveImage('/assets/graph3d.png'); setIsImageOpen(true); }} 
+                           className="relative w-64 h-36 md:w-80 md:h-[180px] rounded-xl overflow-hidden border-2 border-orange-500/30 hover:border-orange-500 transition-all shadow-[0_0_15px_rgba(249,115,22,0.1)] hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] group cursor-zoom-in"
+                       >
+                           <Image src="/assets/graph3d.png" alt="Gráfico 3D" fill className="object-cover group-hover:scale-105 transition-transform duration-500" unoptimized />
+                           <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                               <span className="text-white font-bold uppercase tracking-widest text-sm bg-black/80 px-4 py-2 rounded-full border border-white/10">Ver Gráfico 3D</span>
+                           </div>
+                       </button>
                    </div>
-                </div>
+               </div>
 
                 {loading ? (
                     <div className="flex flex-col items-center justify-center py-20 gap-4">
