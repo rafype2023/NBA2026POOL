@@ -136,27 +136,27 @@ export default function AdminReportPage() {
               <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm border border-neutral-300 p-4 rounded-lg">
                 <div className="flex justify-between border-b border-dotted border-neutral-300 pb-1">
                   <span className="text-neutral-600 font-bold">Oeste 7vs8</span>
-                  <span className="font-black">{getTeamName(p.playInSelections?.westSunsVsClippersWinner)}</span>
+                  <span className="font-black">{getTeamName(p.playInSelections?.westSunsVsClippersWinner)} <span className="text-green-600 text-xs ml-1">{p.playInScores?.westSunsVsClippersWinner ?? 0}pts</span></span>
                 </div>
                 <div className="flex justify-between border-b border-dotted border-neutral-300 pb-1">
                   <span className="text-neutral-600 font-bold">Este 7vs8</span>
-                  <span className="font-black">{getTeamName(p.playInSelections?.east76ersVsHeatWinner)}</span>
+                  <span className="font-black">{getTeamName(p.playInSelections?.east76ersVsHeatWinner)} <span className="text-green-600 text-xs ml-1">{p.playInScores?.east76ersVsHeatWinner ?? 0}pts</span></span>
                 </div>
                 <div className="flex justify-between border-b border-dotted border-neutral-300 pb-1">
                   <span className="text-neutral-600 font-bold">Oeste 9vs10</span>
-                  <span className="font-black">{getTeamName(p.playInSelections?.westWarriorsVsBlazersWinner)}</span>
+                  <span className="font-black">{getTeamName(p.playInSelections?.westWarriorsVsBlazersWinner)} <span className="text-green-600 text-xs ml-1">{p.playInScores?.westWarriorsVsBlazersWinner ?? 0}pts</span></span>
                 </div>
                 <div className="flex justify-between border-b border-dotted border-neutral-300 pb-1">
                   <span className="text-neutral-600 font-bold">Este 9vs10</span>
-                  <span className="font-black">{getTeamName(p.playInSelections?.eastHornetsVsMagicWinner)}</span>
+                  <span className="font-black">{getTeamName(p.playInSelections?.eastHornetsVsMagicWinner)} <span className="text-green-600 text-xs ml-1">{p.playInScores?.eastHornetsVsMagicWinner ?? 0}pts</span></span>
                 </div>
                 <div className="flex justify-between pb-1">
                   <span className="text-neutral-600 font-bold">Oeste 8vo Seed</span>
-                  <span className="font-black">{getTeamName(p.playInSelections?.westEighthSeedWinner)}</span>
+                  <span className="font-black">{getTeamName(p.playInSelections?.westEighthSeedWinner)} <span className="text-green-600 text-xs ml-1">{p.playInScores?.westEighthSeedWinner ?? 0}pts</span></span>
                 </div>
                 <div className="flex justify-between pb-1">
                   <span className="text-neutral-600 font-bold">Este 8vo Seed</span>
-                  <span className="font-black">{getTeamName(p.playInSelections?.eastEighthSeedWinner)}</span>
+                  <span className="font-black">{getTeamName(p.playInSelections?.eastEighthSeedWinner)} <span className="text-green-600 text-xs ml-1">{p.playInScores?.eastEighthSeedWinner ?? 0}pts</span></span>
                 </div>
               </div>
             </div>
@@ -170,7 +170,8 @@ export default function AdminReportPage() {
                   <tr className="bg-neutral-200 text-black border border-neutral-300">
                     <th className="p-2 text-left w-1/2 border-r border-neutral-300">Serie</th>
                     <th className="p-2 text-center w-1/4 border-r border-neutral-300">Ganador</th>
-                    <th className="p-2 text-center w-1/4">Juegos</th>
+                    <th className="p-2 text-center w-1/8 border-r border-neutral-300">Juegos</th>
+                    <th className="p-2 text-center w-1/8 text-green-700">Puntos</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -180,7 +181,8 @@ export default function AdminReportPage() {
                       <tr key={sKey} className={`border border-neutral-300 ${i % 2 === 0 ? 'bg-white' : 'bg-neutral-50'}`}>
                         <td className="p-1.5 px-3 border-r border-neutral-300 font-bold text-neutral-700">{seriesLabels[sKey]}</td>
                         <td className="p-1.5 px-3 border-r border-neutral-300 text-center font-black uppercase text-blue-800">{getTeamName(sel?.winner)}</td>
-                        <td className="p-1.5 px-3 text-center font-bold text-neutral-600">{sel?.games || 'N/A'}</td>
+                        <td className="p-1.5 px-3 border-r border-neutral-300 text-center font-bold text-neutral-600">{sel?.games || 'N/A'}</td>
+                        <td className="p-1.5 px-3 text-center font-black text-green-600 bg-green-50">{sel?.score !== undefined ? sel.score : '-'}</td>
                       </tr>
                     );
                   })}
